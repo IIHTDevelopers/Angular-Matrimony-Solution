@@ -1,0 +1,45 @@
+<h1>Matrimony Portal</h1>
+
+<div>
+    <h3>Add User</h3>
+    <form (submit)="addUser()">
+        <input type="text" name="name" placeholder="Name" [(ngModel)]="newUser.name">
+        <input type="number" name="age" placeholder="Age" [(ngModel)]="newUser.age">
+        <input type="text" name="gender" placeholder="Gender" [(ngModel)]="newUser.gender">
+        <input type="text" name="occupation" placeholder="Occupation" [(ngModel)]="newUser.occupation">
+        <button type="submit">Add User</button>
+    </form>
+</div>
+
+<div>
+    <h3>Search Users</h3>
+    <input type="text" placeholder="Search Users" [(ngModel)]="searchKeyword">
+</div>
+
+<div>
+    <h3>List of Users</h3>
+    <ul>
+        <li *ngFor="let user of filteredUsers">
+            <div>
+                <h4>{{ user.name }}</h4>
+                <p>Age: {{ user.age }}</p>
+                <p>Gender: {{ user.gender }}</p>
+                <p>Occupation: {{ user.occupation }}</p>
+                <button (click)="editUser(user)">Edit</button>
+                <button (click)="deleteUser(user)">Delete</button>
+            </div>
+        </li>
+    </ul>
+</div>
+
+<div *ngIf="isEditing">
+    <h3>Edit User</h3>
+    <form (submit)="saveEditedUser()">
+        <input type="text" name="name" placeholder="Name" [(ngModel)]="editedUser.name">
+        <input type="number" name="age" placeholder="Age" [(ngModel)]="editedUser.age">
+        <input type="text" name="gender" placeholder="Gender" [(ngModel)]="editedUser.gender">
+        <input type="text" name="occupation" placeholder="Occupation" [(ngModel)]="editedUser.occupation">
+        <button type="submit">Save</button>
+        <button type="button" (click)="cancelEdit()">Cancel</button>
+    </form>
+</div>
